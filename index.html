@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auth Button</title>
+</head>
+<body>
+  <button onclick="redirectToAuth()">Authorize</button>
+
+  <script>
+    function redirectToAuth() {
+      // API'nin authorization URL'si
+      const authorizationUrl = 'https://api.intra.42.fr/oauth/authorize';
+
+      // Bu obje ile istenen izinler belirtilir, scope belirtilmezse varsayılan izinler kullanılır
+      const queryParams = {
+        client_id: '',
+        redirect_uri: 'http://ip:port/api42', // Dönüş URL'si
+        response_type: 'code', // Authorization kodu almak için 'code' kullanılır
+        scope: 'public' // İzin kapsamı, gerektiği şekilde değiştirilebilir
+      };
+
+      // Query parametrelerini URL'ye dönüştürme
+      const queryString = new URLSearchParams(queryParams).toString();
+
+      // Authorization URL'sine yönlendirme
+      window.location.href = `${authorizationUrl}?${queryString}`;
+    }
+  </script>
+</body>
+</html>
