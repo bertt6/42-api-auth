@@ -10,21 +10,17 @@
 
   <script>
     function redirectToAuth() {
-      // API'nin authorization URL'si
-      const authorizationUrl = 'https://api.intra.42.fr/oauth/authorize';
 
-      // Bu obje ile istenen izinler belirtilir, scope belirtilmezse varsayılan izinler kullanılır
+      const authorizationUrl = 'https://api.intra.42.fr/oauth/authorize';
       const queryParams = {
         client_id: '',
-        redirect_uri: 'http://ip:port/api42', // Dönüş URL'si
-        response_type: 'code', // Authorization kodu almak için 'code' kullanılır
-        scope: 'public' // İzin kapsamı, gerektiği şekilde değiştirilebilir
+        redirect_uri: 'http://ip:port/api42',
+        response_type: 'code', 
+        scope: 'public'
       };
 
-      // Query parametrelerini URL'ye dönüştürme
       const queryString = new URLSearchParams(queryParams).toString();
 
-      // Authorization URL'sine yönlendirme
       window.location.href = `${authorizationUrl}?${queryString}`;
     }
   </script>
