@@ -27,7 +27,6 @@ app.get('/api42', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   const code = req.query.code;
 
-  // Step 1: Exchange authorization code for access token
   const tokenResponse = await axios.post('https://api.intra.42.fr/oauth/token', {
     grant_type: 'authorization_code',
     code: code,
@@ -41,10 +40,7 @@ app.get('/api42', async (req, res) => {
       'Authorization': `Bearer ${tokenResponse.data.access_token}`
     }
   });
-
-  //window.localStorage.setItem('token', tokenResponse.data.access_token);
-  //const token = window.localStorage.getItem('token');
-
+  
   res.send({ status: 200, message: "Başarılı" });
 });
 
